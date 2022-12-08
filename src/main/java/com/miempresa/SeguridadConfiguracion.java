@@ -43,9 +43,19 @@ public class SeguridadConfiguracion extends WebSecurityConfigurerAdapter {
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
-		.and()
-		.logout()
-		.permitAll();
+        	.loginPage("/login")
+	        .permitAll()
+	        .defaultSuccessUrl("/")
+	        .failureUrl("/login")
+	        .usernameParameter("username")
+	        .passwordParameter("password")
+        .and()
+        .logout()
+	        .permitAll()
+	        .invalidateHttpSession(true)
+	        .logoutSuccessUrl("/login")
+		.and().exceptionHandling().accessDeniedPage("/error")
+		;
 	}
 
 }
