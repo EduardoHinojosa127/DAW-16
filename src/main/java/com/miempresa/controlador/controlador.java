@@ -95,10 +95,7 @@ public class controlador {
 		servicioTarea.borrar(id);
 		return "redirect:/listarTareas";
 	}
-	@GetMapping("/error")
-	public String error() {
-		return "error";
-	}
+
 	@GetMapping("/login")
 	public String login() {
 		return "login";

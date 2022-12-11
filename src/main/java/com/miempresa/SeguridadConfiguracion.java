@@ -35,6 +35,7 @@ public class SeguridadConfiguracion extends WebSecurityConfigurerAdapter {
 		http
 		.authorizeRequests()
 		.antMatchers("/","/listarEmpleados").permitAll()
+		.antMatchers("/api/empleados/**").permitAll()
 		.antMatchers("/agregarEmpleado").access("hasRole('ROLE_ADMIN')")
 		.antMatchers("/mostrarEmpleado").access("hasRole('ROLE_ADMIN')")
 		.antMatchers("/guardarEmpleado").access("hasRole('ROLE_ADMIN')")
@@ -54,7 +55,8 @@ public class SeguridadConfiguracion extends WebSecurityConfigurerAdapter {
 	        .permitAll()
 	        .invalidateHttpSession(true)
 	        .logoutSuccessUrl("/login")
-		.and().exceptionHandling().accessDeniedPage("/error")
+	    .and()
+	    .csrf().disable()
 		;
 	}
 
